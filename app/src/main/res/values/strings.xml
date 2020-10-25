@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ReminderProject</string>
+    <string name="add_new_item_description">يمكنك إضافة ملاحظة إلى القائمة واختيار نوع ولون الملاحظة.</string>
+    <string name="add_note_text">أضف ملاحظة</string>
+    <string name="add">إضافة</string>
+    <string name="read_permission_needed_to_access_files">صلاحية الوصول إلى الملفات مطلوبة لقراءة الصور والملفات من جهازك.</string>
+    <string name="select_picture">اختر صورة</string>
+    <string name="faild_to_get_image">فشل في الوصول إلى الصورة.</string>
+    <string name="set_text_massage">يرجى إدخال نص الملاحظة.</string>
+    <string name="set_image_massage">يرجى اختيار الصورة.</string>
+    <string name="error_data">لم تتم إضافة المذكرة بشكل صحيح.</string>
+    <string name="delete_confirmation">هل أنت متأكد من حذف هذا العنصر؟</string>
+    <string name="confirm">تأكيد الحذف</string>
+    <string name="cancel">إلغاء</string>
+</resources>
