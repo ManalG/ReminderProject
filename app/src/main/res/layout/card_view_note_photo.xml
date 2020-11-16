@@ -2,6 +2,8 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:padding="8dp"
     android:layout_margin="8dp">
     <LinearLayout
@@ -13,7 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="86dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_photo"
+            android:padding="5dp"
+            android:cropToPadding="true"
+            app:srcCompat="@drawable/ic_photo"
             android:layout_weight="0"/>
         <TextView
             android:id="@+id/card_note_text"

@@ -12,4 +12,5 @@
     <string name="delete_confirmation">هل أنت متأكد من حذف هذا العنصر؟</string>
     <string name="confirm">تأكيد الحذف</string>
     <string name="cancel">إلغاء</string>
+    <string name="save">حفظ</string>
 </resources>

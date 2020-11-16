@@ -20,6 +20,9 @@ import android.widget.Toast;
 
 import com.example.reminderproject.R;
 import com.example.reminderproject.Constants;
+import com.example.reminderproject.classes.Note;
+import com.example.reminderproject.classes.NoteCheckbox;
+import com.example.reminderproject.classes.NotePhoto;
 import com.example.reminderproject.enums.NoteType;
 
 public class AddNewNoteActivity extends AppCompatActivity {
@@ -30,6 +33,7 @@ public class AddNewNoteActivity extends AppCompatActivity {
     private EditText editTextNote;
     private CheckBox checkBoxNote;
     private ImageView imageViewNote;
+    private View noteView;
     private NoteType currentType;
     private int currentColor;
     private Uri selectedImageUri;
@@ -40,6 +44,7 @@ public class AddNewNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_note);
 
+        noteView = findViewById(R.id.note_data_container);
         editTextNote = findViewById(R.id.edit_text_note);
         checkBoxNote = findViewById(R.id.edit_check_box);
         imageViewNote = findViewById(R.id.edit_image_note);
@@ -70,9 +75,9 @@ public class AddNewNoteActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButtonChecked = group.findViewById(checkedId);
-                int current_radio = radioButtonChecked.getId();
+                int currentRadio = radioButtonChecked.getId();
                 if (radioButtonChecked.isChecked()) {
-                    switch (current_radio){
+                    switch (currentRadio){
                         case R.id.radio_button_red:
                             prepareNoteColor(getResources().getColor(R.color.red));
                             break;
@@ -101,7 +106,7 @@ public class AddNewNoteActivity extends AppCompatActivity {
 
     private void prepareNoteColor(int color){
         currentColor = color;
-        findViewById(R.id.note_data_container).setBackgroundColor(color);
+        noteView.setBackgroundColor(color);
     }
 
     public void image_action(View view){
@@ -156,23 +161,23 @@ public class AddNewNoteActivity extends AppCompatActivity {
     }
 
 
-    public void add_note_action(View view){
+    public void addNoteAction(View view){
         if (getNoteText().isEmpty() != true) {
             Intent intent = new Intent();
-            switch (currentType){
-                case NOTE_WITH_CHECKBOX_TYPE:
-                    intent.putExtra(Constants.EXTRA_CHECKBOX, checkBoxNote.isChecked());
-                    break;
-                case NOTE_WITH_PHOTO_TYPE:
-                    if (getNoteImage() != null) {
-                        intent.putExtra(Constants.EXTRA_PHOTO_URI, selectedImageUri);
-                        break;
-                    }
-                    return;
+            Note currentNote = null;
+            if (currentType == NoteType.NOTE_TYPE){
+                Note note = new Note(getNoteText(), currentColor);
+                currentNote = note;
+            } else if (currentType == NoteType.NOTE_WITH_CHECKBOX_TYPE) {
+                NoteCheckbox noteCheckbox = new NoteCheckbox(getNoteText(), currentColor, checkBoxNote.isChecked());
+                currentNote = noteCheckbox;
+            } else if (currentType == NoteType.NOTE_WITH_PHOTO_TYPE && getNoteImage() != null) {
+                NotePhoto notePhoto = new NotePhoto(getNoteText(), currentColor, getNoteImage());
+                currentNote = notePhoto;
+            } else {
+                return;
             }
-            intent.putExtra(Constants.EXTRA_TEXT , getNoteText());
-            intent.putExtra(Constants.EXTRA_NOTE_TYPE, currentType);
-            intent.putExtra(Constants.EXTRA_NOTE_COLOR, currentColor);
+            intent.putExtra(Constants.EXTRA_NOTE_OBJECT, currentNote);
             setResult(RESULT_OK, intent);
             finish();
         } else {

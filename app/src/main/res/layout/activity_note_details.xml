@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".activity.NoteDetailsActivity">
 
     <LinearLayout
@@ -12,7 +13,7 @@
         android:layout_height="0dp"
         android:background="@color/red"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/button_add_action"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,39 +26,32 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:gravity="right"
-            android:inputType="text"
-            android:padding="16dp"
             android:hint="@string/add_note_text"
-            android:textColor="@color/colorPrimary"/>
+            android:inputType="textMultiLine"
+            android:padding="16dp"
+            android:textColor="@color/colorPrimary" />
 
     </LinearLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9"/>
 
     <Button
         android:id="@+id/button_add_action"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/add"
+        android:background="@color/colorPrimaryDark"
+        android:onClick="edit_note_action"
+        android:text="@string/save"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/note_data_container"
-        android:textColor="@color/colorPrimary"
-        android:background="@color/colorPrimaryDark"
-        android:onClick="edit_note_action"/>
+        app:layout_constraintTop_toBottomOf="@+id/note_data_container" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

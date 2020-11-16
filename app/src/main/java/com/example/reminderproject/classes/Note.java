@@ -1,16 +1,17 @@
 package com.example.reminderproject.classes;
 
 import android.graphics.Color;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import com.example.reminderproject.R;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Note {
+public class Note implements Parcelable {
 
     private String note;
     private int color;
+
+    public Note() { }
 
     public Note(String note, int color){
         this.note = note;
@@ -41,5 +42,37 @@ public class Note {
 
         return  defaultList;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.note);
+        dest.writeInt(this.color);
+    }
+
+    public void readFromParcel(Parcel in) {
+        this.note = in.readString();
+        this.color = in.readInt();
+    }
+
+    public Note(Parcel in) {
+        readFromParcel(in);
+    }
+
+    public static Parcelable.Creator<Note> CREATOR = new Parcelable.Creator<Note>() {
+        @Override
+        public Note createFromParcel(Parcel source) {
+            return new Note(source);
+        }
+
+        @Override
+        public Note[] newArray(int size) {
+            return new Note[size];
+        }
+    };
 
 }
