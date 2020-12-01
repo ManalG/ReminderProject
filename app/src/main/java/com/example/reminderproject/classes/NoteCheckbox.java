@@ -20,6 +20,10 @@ public class NoteCheckbox extends Note implements Parcelable {
         return isChecked;
     }
 
+    public void setCheckedStatus(boolean checked) {
+        isChecked = checked;
+    }
+
     public NoteCheckbox(Parcel in){
         super(in);
     }

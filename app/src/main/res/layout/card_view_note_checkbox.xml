@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:checked="false"
-            android:onClick="chackbox_action"/>
+            android:onClick="checkboxAction"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (requestCode == EDIT_NOTE) {
             if (resultCode == RESULT_OK && data != null){
-                String note = data.getStringExtra(Constants.EXTRA_EDIT_NOTE);
-                notes.get(editPosition).setNote(note);
+                Note note = data.getParcelableExtra(Constants.EXTRA_EDIT_NOTE);
+                notes.set(editPosition, note);
                 noteAdapter.notifyDataSetChanged();
             }
         }
@@ -100,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
         editPosition = position;
         Note note = notes.get(position);
         Intent intent = new Intent(MainActivity.this, NoteDetailsActivity.class);
-        intent.putExtra(Constants.EXTRA_TEXT, note.getNote());
-        intent.putExtra(Constants.EXTRA_NOTE_COLOR, note.getColor());
+        intent.putExtra(Constants.EXTRA_NOTE_OBJECT, note);
         startActivityForResult(intent, EDIT_NOTE);
     }
 
@@ -126,9 +125,12 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void chackbox_action(View view) {
+    public void checkboxAction(View view) {
+        View parent = (View) view.getParent();
         if(((CheckBox) view).isChecked()){
-            ((View) view.getParent()).setBackgroundColor(getResources().getColor(R.color.green));
+            parent.setBackgroundColor(getResources().getColor(R.color.green));
+        } else {
+            parent.setBackgroundColor(parent.getSolidColor());
         }
     }
 }

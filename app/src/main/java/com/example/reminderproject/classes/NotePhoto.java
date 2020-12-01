@@ -21,6 +21,10 @@ public class NotePhoto extends Note {
         return image;
     }
 
+    public void setImage(Uri image) {
+        this.image = image;
+    }
+
     public NotePhoto(Parcel in){
         super(in);
     }

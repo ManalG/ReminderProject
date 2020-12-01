@@ -18,6 +18,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/edit_image_note"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:cropToPadding="true"
+            android:gravity="center"
+            android:onClick="image_action"
+            android:padding="16dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
         <EditText
             android:id="@+id/edit_note_text"
             android:layout_width="match_parent"
@@ -30,6 +42,13 @@
             android:inputType="textMultiLine"
             android:padding="16dp"
             android:textColor="@color/colorPrimary" />
+
+        <CheckBox
+            android:id="@+id/edit_check_box"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="0"
+            android:visibility="gone" />
 
     </LinearLayout>
 
